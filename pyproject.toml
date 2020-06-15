@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "dimface"
+version = "0.1.0"
+description = "A program to dims screen brightness if no face is detected on the screen to save battery power"
+authors = ["Abdelrahman Kandil <abdelrahmankandil@hotmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+opencv_python = "^4.2.0"
+click = "^7.1.2"
+wmi = "^1.5.1"
+colorama = "^0.4.3"
+
+[tool.poetry.dev-dependencies]
+autopep8 = "^1.5.3"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

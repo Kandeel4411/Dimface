@@ -1,0 +1,5 @@
+click==7.1.2
+numpy==1.18.5
+opencv-python==4.2.0.34
+pywin32==228
+wmi==1.5.1
