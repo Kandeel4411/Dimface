@@ -1,5 +1,12 @@
 click==7.1.2
+colorama==0.4.3
 numpy==1.18.5
 opencv-python==4.2.0.34
+pynput==1.6.8
+pyobjc-core==6.2.1; sys_platform == "darwin"
+pyobjc-framework-cocoa==6.2.1; sys_platform == "darwin"
+pyobjc-framework-quartz==6.2.1; sys_platform == "darwin"
+python-xlib==0.27; sys_platform in "linux"
 pywin32==228
+six==1.15.0
 wmi==1.5.1
