@@ -11,6 +11,7 @@ opencv_python = "^4.2.0"
 click = "^7.1.2"
 wmi = "^1.5.1"
 colorama = "^0.4.3"
+pynput = "^1.6.8"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.5.3"

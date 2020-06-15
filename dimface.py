@@ -5,6 +5,7 @@ import time
 import click
 import cv2
 import wmi
+from pynput import mouse
 
 BASE_DIR = pl.Path(__file__).parent
 
@@ -18,8 +19,7 @@ BASE_DIR = pl.Path(__file__).parent
         fg="yellow",
     ),
 )
-@click.pass_context
-def dimface(ctx):
+def dimface():
     pass
 
 
@@ -33,27 +33,60 @@ def dimface(ctx):
 def run(seconds):
     click.secho("Running..", fg="green")
 
+    # Opening web camera and loading face classifier
     face_cascade = cv2.CascadeClassifier(
         str(BASE_DIR / pl.Path('haarcascade_frontalface_default.xml')))
-
     video_capture = cv2.VideoCapture(0)
 
+    # Flag to check if screen is bright or not
+    bright = True
+
     while True:
-        ret, frame = video_capture.read()
+        with mouse.Events() as events:
+            try:
 
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+                # Blocks thread until a mouse event is recieved within (seconds)
+                # else it throws an Exception
+                event = events.get(seconds)
 
-        faces = face_cascade.detectMultiScale(
-            gray,
-            1.3, 5
-        )
+            # CTRL+C was pressed
+            except KeyboardInterrupt:
+                click.secho("Exiting..", fg="red")
+                video_capture.release()
+                break
 
-        wmi.WMI(namespace='wmi').WmiMonitorBrightnessMethods()[
-            0].WmiSetBrightness(0 if len(faces) == 0 else 100, 0)
+            # No mouse event was detected - proceeds to detect face
+            except Exception as e:
+                if face_detected(face_cascade, video_capture):
+                    if not bright:
+                        change_brightness(brightness=100)
+                        bright = True
+                else:
+                    if bright:
+                        change_brightness(brightness=0)
+                        bright = False
 
-        time.sleep(seconds)
+            # Mouse event was detected - sleeps for (seconds) instead
+            else:
+                if not bright:
+                    change_brightness(brightness=100)
+                    bright = True
+                time.sleep(seconds)
 
-    video_capture.release()
+
+def face_detected(face_cascade, video_capture):
+    ret, frame = video_capture.read()
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    faces = face_cascade.detectMultiScale(
+        gray,
+        1.3, 5
+    )
+    return len(faces) != 0
+
+
+def change_brightness(brightness):
+    wmi.WMI(namespace="wmi").WmiMonitorBrightnessMethods()[
+        0].WmiSetBrightness(brightness, 0)
 
 
 if __name__ == "__main__":
