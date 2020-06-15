@@ -4,7 +4,11 @@
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 
 A command line interface to automatically dim or brighten screen based on if a face is detected on the screen or not to better save battery power.  
-  
+
+<p align="center">
+<img src="https://i.giphy.com/media/RJCp1atfDGUI1WaL05/giphy.webp">
+</p>
+
 ## Requirements
 - Python 3.6+.
 - **Windows**  
