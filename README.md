@@ -3,7 +3,7 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/Kandeel4411/Dimface/pulse)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 
-A Personal script to automatically dim Window's screen brightness if no face is detected on the screen to save battery power.  
+A command line interface to automatically dim or brighten screen based on if a face is detected on the screen or not to better save battery power.  
   
 ## Requirements
 - Python 3.6+.
