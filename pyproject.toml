@@ -7,7 +7,7 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-opencv_python = "^4.2.0"
+opencv_python = "^4.8.1"
 click = "^7.1.2"
 wmi = "^1.5.1"
 colorama = "^0.4.3"
